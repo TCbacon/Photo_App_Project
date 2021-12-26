@@ -1,0 +1,52 @@
+.container {
+    text-align: center;
+}
+
+.post-grid {
+    display: inline-block;
+    background-color: aquamarine;
+    width: 300px;
+    margin-right: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.post-image {
+    margin-top: 15px;
+    width: 250px;
+}
+
+@media screen and (max-width: 500px) {
+    .post-image {
+        width: 200px;
+    }
+    .post-grid {
+        width: 250px;
+    }
+}
+
+.comments-main {
+    background: rgb(134, 130, 130);
+}
+
+
+.comments-main ul li {
+    list-style: none;
+}
+
+.comment {
+    padding: 5px 10px;
+    background: #4ca7a7;
+}
+
+
+.comment-box-main {
+    background: #eeb53a;
+}
+
+
+#comments-list-id {
+    height:200px;
+    width: 100%;
+    overflow-y: scroll;
+}

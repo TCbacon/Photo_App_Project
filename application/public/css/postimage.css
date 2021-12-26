@@ -1,0 +1,56 @@
+.container {
+    display: block;
+    text-align: center;
+    background-color: #F8F8F8;
+    box-shadow: 2px 2px 2px #000;
+}
+
+.form {
+    display: block;
+    padding-bottom: 10px;
+    column-gap: 1px;
+}
+
+header {
+    box-shadow: 2px 2px 2px #cccccc;
+    background-color: #78d1fa;
+    color: #fff
+}
+
+label {
+    color: blue;
+    font-size: 25px;
+}
+
+input {
+    border-radius: 5px;
+}
+
+button {
+    font-size: 20px;
+    background-color: greenyellow;
+    width: 15%;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: yellow;
+}
+
+textarea {
+    max-width: 500px;
+    max-height: 300px;
+}
+
+@media screen and (max-width: 500px) {
+    button {
+        font-size: 12px;
+        background-color: greenyellow;
+        width: 30%;
+        border-radius: 10px;
+    }
+    textarea {
+        max-width: 200px;
+        max-height: 300px;
+    }
+}

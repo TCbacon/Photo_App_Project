@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../public/css/postimage.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Image Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Post Image</h1>
+        </header>
+        <!--action="/posts/createPost" -->
+        <form id="post-image-id" class="form" method="POST" , enctype="multipart/form-data">
+            <label class="lbl-title">Title</label>
+            <br />
+            <input class="input-title" name="title" type="text" placeholder="Title" />
+            <br />
+            <label>Enter a description</label>
+            <br />
+            <textarea row="5" cols="30" placeholder="Description" name="description"></textarea>
+            <br />
+            <label>Add an Image</label>
+            <br />
+            <input type="file" name="uploadImage"/>
+            <br />
+            <label>You accept the Acceptable Use Policy for uploading images.</label>
+            <br />
+            <input type="checkbox" required/>
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const _form = document.getElementById('post-image-id');
+        _form.onsubmit = function (event) {
+            event.preventDefault();
+            let _body = new FormData(_form);
+            console.log(_body);
+            fetch('/posts/createPost', {
+                body: _body,
+                method: "POST"
+            }).then((response) => {
+                return response.json();
+            })
+            .then((data)=>{
+                location.replace(data.redirect);
+            })
+            .catch((err) =>{
+                console.log(err);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+
+<li>
+    <div id="message-{{id}}" class="col-md-9 col-sm-9 col-9 comment rounded mb-2 text-start">
+        {{#if avatar}}
+        <img class="avatar" src="/{{avatar}}" alt="avatar"/>
+        {{else}}
+        <img class="avatar" src="\public\images\avatars\default_avatar.jfif" alt="default-avatar"/>
+        {{/if}}
+        <strong class="m-0">@{{username}}</strong>
+        <span class="date-posted">{{created}}</span>
+        <div class="comment-text">{{comment}}</div>
+    </div>
+</li>

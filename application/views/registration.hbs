@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../public/css/registration.css">
+    <script defer type="text/javascript" src="../public/js/registration.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Registration</h1>
+        </header>
+      
+      <!--onsubmit="return isValidForm()"-->
+        <form id="regisFormId"  class="form-grid" onsubmit="return isValidForm()" name="myform" method="POST", action="/users/register"
+        enctype="application/x-www-form-urlencoded">
+            <label>Enter a username</label>
+            <input id="nameInputId" name="username" type="text" placeholder="Username" onkeyup="startsWithLetter(this.value)" required/>
+            <br/>
+            <span class="error" id="nameErrorId"></span>
+
+            <label>Enter an email</label>
+            <input id="emailInputId" name="email" type="email" placeholder="Email" onkeyup="handleEmail(this.value)" required/>
+            <br/>
+            <span class="error" id="emailErrorId"></span>
+
+            <label>Enter a password</label>
+            <input id="pswordId" name="password" type="password" placeholder="Password" 
+            onfocus="showPassMsg()"
+            onblur="hidePassMsg()"
+            onkeyup="handlePassword(this.value)"/>
+            <br/>
+            <span class="error" id="psErrorId"></span>
+
+            <label>Confirm password</label>
+            <input id="confirmPassId" name="cpassword" type="password" placeholder="Confirm Password" onkeyup="confirmPassword(this.value)"/>
+            <br/>
+            <p class="error" id="confirmPasswordErrorId"></p>
+
+            <label>You accept that you are 13+ years of age.</label>
+            <input id="ageChkboxId" type="checkbox" required/>
+
+            <label>You accept the TOS and Privacy Rules</label>
+            <input id="rulesChkboxId" type="checkbox" required/>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="passwordMessageId">
+            <h3>Password must contain the following:</h3>
+            <p id="isEightCharsId" class="error"><b>Contains 8 or more characters</b></p>
+            <p id="isUpperId" class="error"><b>Contains 1 capital letter</b></p>
+            <p id="isNumberId" class="error"><b>Contains 1 number</b></p>
+            <p id="isSpecialId" class="error"><b>Contains 1 special character /*&-+!@#$^&*</b></p>
+        </div>
+    </div>
+</body>
+</html>

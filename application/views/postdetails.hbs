@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/postdetails.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="post-grid">
+            <img class="post-image" src="/{{currentPost.photopath}}" alt="Your Image" />
+            <h3>Title: {{currentPost.title}}</h3>
+            <h3>Title: {{currentPost.description}}</h3>
+            <h3>Author: {{currentPost.username}}</h3>
+            <h3>Creation Time: {{currentPost.created}}</h3>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded">
+                <ul id="comments-list-id">
+                    {{#each currentPost.comments}}
+                    {{> comment this}}
+                    {{/each}}
+                </ul>
+
+
+                <div class="row comment-box-main p-3 rounded-bottom">
+                    <div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
+                        <input id="comment-box-text" type="text" class="form-control" placeholder="comment..." />
+                    </div>
+                    <div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
+                        <button id="comment-box-button" class="btn btn-info">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('span[class=date-posted]')
+            .forEach((postedDate) => {
+                postedDate.textContent = new Date(postedDate.textContent)
+                    .toLocaleString();
+            });
+    });
+
+
+    function addMessage(data) {
+        let template = document.createElement('template');
+
+        if(!data.avatar){
+            data.avatar = "public/images/avatars/default_avatar.jfif";
+        }
+        template.innerHTML =
+            `<li>
+        <div id="message-${data.commentId}" class="col-md-9 col-sm-9 col-9 comment rounded mb-2 text-start">
+            <img class="avatar" src="/${data.avatar}" alt="avatar"/>
+            <strong class="m-0">@${data.username}</strong>
+            <span class="date-posted">${new Date().toLocaleString()}</span>
+            <div class="comment-text">${data.comment}</div>
+        </div>
+         </li>`;
+        document.getElementById('comments-list-id').firstChild.before(template.content.firstChild);
+    }
+
+    document.getElementById('comment-box-button').onclick = (event) => {
+        let commentText = document.getElementById('comment-box-text').value;
+        let postId = document.location.pathname.match(/\d+/g).map(Number)[0];
+
+
+        if (!commentText) {
+            return;
+        }
+
+        let fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                comment: commentText,
+                postId: postId
+            })
+        }
+
+        fetch("/comments/create", fetchOptions)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                if (data.code == 1) {
+                    console.log(data);
+                    addMessage(data);
+                    addFlashFromFrontEnd(data.message, data.status);
+                }
+
+                else {
+                    addFlashFromFrontEnd(data.message, data.status);
+                }
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+</script>
+
+</html>
