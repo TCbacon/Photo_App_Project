@@ -7,7 +7,6 @@
 <li>comments</li>
 <li>posts</li>
 <li>users</li>
-<li>sessions</li>
 </ul>
 <p>The schema can be found in dbloader file inside bin folder.</p>
 
@@ -46,4 +45,4 @@
 <img src="./app_images/loginpage.jpg" />
 
 # Deployed Site
-<a href="https://photo-app-school-project-317.herokuapp.com/">Photo App</a>
+<a href="https://photo-app-henry.herokuapp.com/">Photo App Site</a>
