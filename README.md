@@ -44,5 +44,10 @@
 <h3>Login Page</h3>
 <img src="./app_images/loginpage.jpg" />
 
-# Deployed Site
+# Deployed Sites
+<p>Link to the deployed site shown in this repository.</p>
 <a href="https://photo-app-henry.herokuapp.com/">Photo App Site</a>
+
+<br>
+<p>I also made another photo app site to learn more about React, which you can visit at the link below.</p>
+<a href="https://atann.netlify.app/posts">MERN Stack Photo App</a>
